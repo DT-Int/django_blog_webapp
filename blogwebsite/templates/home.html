@@ -11,13 +11,25 @@
 	<a href="{% url 'article_details' post.pk %}"> {{ post.title }} </a><br>
 	{{ post.author.first_name }} <br>
 	<small>{{ post.post_date }}</small><br>
-	{{ post.body }} <br>
-	<a href="{% url 'edit_post' post.pk %}"> Update </a> | 
-	<a href="{% url 'delete_post' post.pk %}"> Delete </a><br>
-	<hr>
+	
+
+	{% if user.is_authenticated %}
+
+		<a href="{% url 'edit_post' post.pk %}"> Update </a> | 
+		<a href="{% url 'delete_post' post.pk %}"> Delete </a><br>
+		<hr>
+
+	{% endif %}
+		<hr>
+	{{ post.body|slice:":200" }} <br>
 
 {% endfor %} 
 
+<hr>
+<br><br>
+
 {% endblock %}
+
+
 
 

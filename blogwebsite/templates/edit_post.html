@@ -4,21 +4,29 @@
 
 {% block content %}
 
-<br>
-<h1>Edit Post...</h1>
-<br>
+	{% if user.is_authenticated %}
 
-<div class="form-group">
+		<br>
+		<h1>Edit Post...</h1>
+		<br>
 
-	<form method="POST">
+		<div class="form-group">
 
-		{% csrf_token %}
-		{{ form.as_p }}<br>
-		<button class="btn btn-success">Update</button>
+			<form method="POST">
 
-	</form>
+				{% csrf_token %}
+				{{ form.as_p }}<br>
+				<button class="btn btn-success">Update</button>
 
-</div>
+			</form>
+
+		</div>
+
+	{% else %}
+	<br>
+	You are not allowed to edit... Please register or login...
+
+	{% endif %}
 
 {% endblock %}
 
